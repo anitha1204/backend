@@ -9,7 +9,7 @@ const connectDB=()=>{
     console.log("mongoDB connec....");
 })
 .catch((error)=>{
-    console.log("connection error:",error.message);
+    console.log("connection erro:",error.message);
 });
 }
 
