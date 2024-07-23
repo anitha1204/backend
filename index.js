@@ -17,7 +17,6 @@
 //   console.log("Server running on port:", port);
 // });
 const express = require('express');
-const bodyParser = require('body-parser');
 const connectDB = require('./common/connection');
 const userRoutes = require('./routes/userRoutes');
 const cors = require("cors");
@@ -26,7 +25,7 @@ const app = express();
 
 connectDB();
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 app.use(userRoutes);
 
