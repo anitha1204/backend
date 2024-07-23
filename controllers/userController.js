@@ -84,20 +84,24 @@
 // };
 
 // module.exports = { postUserData, getUserData };
-const userDB =  require("../model/userModel")
+const userDB = require("../model/userModel");
 
 const createUser = async (req, res) => {
     try {
-        const { mobileNumber, email, username, message } = req.body;
-        if (!username) {
+        const { userName,mobileNumber, email, message } = req.body;
+        
+        if (!userName) {
             return res.status(400).json({ message: 'Username is required' });
         }
+        if (!mobileNumber || !email || !message) {
+            return res.status(400).json({ message: 'All fields are required' });
+        }
+
         const user = new userDB({
-    
-            mobileNumber,
+            userName,
+            mobileNumber, 
             email,
-            username,
-            message,
+             message,
         });
         await user.save();
         res.status(201).json({ message: 'User created successfully', user });
@@ -109,7 +113,6 @@ const createUser = async (req, res) => {
     }
 };
 
-
 const getUsers = async (req, res) => {
     try {
         const email = req.params.email;
@@ -117,7 +120,6 @@ const getUsers = async (req, res) => {
         if (!email) {
             return res.status(400).json({ Error: "Email is required." });
         }
-        
 
         const userData = await userDB.findOne({ email });
 
