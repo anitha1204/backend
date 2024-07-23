@@ -88,7 +88,7 @@ const userDB =  require("../model/userModel")
 
 const createUser = async (req, res) => {
     try {
-        const { mobileNumber, email, userName, message } = req.body;
+        const { mobileNumber, email, username, message } = req.body;
         if (!username) {
             return res.status(400).json({ message: 'Username is required' });
         }
@@ -96,7 +96,7 @@ const createUser = async (req, res) => {
     
             mobileNumber,
             email,
-            userName,
+            username,
             message,
         });
         await user.save();
