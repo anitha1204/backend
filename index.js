@@ -26,8 +26,9 @@ const app = express();
 
 connectDB();
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+
 app.use(userRoutes);
 
 const PORT = 5000;
