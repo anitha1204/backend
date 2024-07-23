@@ -28,7 +28,7 @@ connectDB();
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api', userRoutes);
+app.use(userRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {
