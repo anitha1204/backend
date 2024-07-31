@@ -85,6 +85,8 @@
 
 // module.exports = { postUserData, getUserData };
 
+
+require('dotenv').config();
 const userDB = require("../model/userModel");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
@@ -107,6 +109,10 @@ const createUser = async (req, res) => {
              message,
         });
         await user.save();
+
+        // Send email
+        await send(userName,mobileNumber, email, message);
+
         res.status(201).json({ message: 'User created successfully', user });
     } catch (error) {
         if (error.code === 11000) {
@@ -139,6 +145,35 @@ const getUsers = async (req, res) => {
         });
     }
 };
+
+
+const send = async (userName,mobileNumber, email, message) => {
+    try {
+        console.log("data", userName,mobileNumber, email, message);
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: "selvam12042003@gmail.com",
+                pass: "jxjj csdq qked wrku",
+            },
+        });
+        const mailoption = {
+            form:"selvam12042003@gmail.com",
+            to: [email, "anithas12042003@gmail.com"],
+            subject: "Booking the room",
+            text: `Dear ${userName},
+
+            Your Room Booking is successful.
+
+            Thank you for your Room booking.`,
+        };
+        await transporter.sendMail(mailoption);
+        console.log("Mail sent successfully");
+    } catch (error) {
+        console.error("Error sending email:", error.message);
+    }
+};
+
 
 module.exports = {
     createUser,
