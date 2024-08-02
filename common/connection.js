@@ -1,5 +1,3 @@
-
-
 const mongoose = require("mongoose");
 const Mongo_Url = "mongodb+srv://anithas12042003:Anitha1204@cluster0.tdutujd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
