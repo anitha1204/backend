@@ -70,7 +70,7 @@ const send = async (userName,mobileNumber, email, message) => {
         });
         const mailoption = {
             form:"selvam12042003@gmail.com",
-            to: [email, "Swaminathan@shriharitham.com"],
+            to: [email, "anithas12042003@gmail.com"],
             subject: "HARITHAMS BUILDING INTEGRITY",
             text: `Dear ${userName},
           
